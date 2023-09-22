@@ -1,0 +1,24 @@
+\x0c
+\eF___\eG Minitel Command Cheatsheet \eF_____\eE__\eG__\eG\n\r
+
+\eG\\eA\eA RED \eG\eQ\\eQ RED \eP\eG \\eC\eC YEL \eG\eS\\eS \e@YEL \eP\n\r\#So I tried \eX here and something weird happened with background stuff!! check this out!\#
+\eG\\eB\eB GRN \eG\eR\\eR GRN \eP\eG \\eF\eF CYN \eG\eV\\eV \e@CYN \eP\n\r
+\eG\\eD\eD BLU \eG\eT\\eT BLU \eP\eG \\eE\eE MAG \eG\eU\\eU \e@MAG \eP\n\r
+\eG\\eG WHT \eW\\eW\e@ WHT \eP\eG \\e@\eW\e@ BLK\eP \eG\\eP BLK\n\n\r\#find a solution for this "space after bkg change" nonsense!\#
+
+\\eG\eH Flashing \eI    \\eI Steady \n\r
+\\eZ\eZ Start lining\eY \\eY Stop Lining\n\r  Separated Sixels   Normal Sixels\n\n\r
+
+
+\\eM\eM Double Height\eL \\eL normal hight\n\r
+\\eN \eNDouble Width\eL\n\n\r
+\\eO \eODouble Size\eL\n\n\r
+
+\\x0B Up \\x0A Down \\x08 Left \\x09 Right\n\r
+\\x1F\\x(40+X)\\x(40+Y) Put cursor at X,Y\n\n\r
+
+\\x12\\x(40+N) Repeat last char. N times\n\r
+\\x0C Clear screen \\# Toggle comment mode
+\\x11 Show cursor  \\x14 Hide cursor\n\r
+\\x0F Text mode    \\x0E Graphics mode\n\r
+\\n newline        \\r carriage return

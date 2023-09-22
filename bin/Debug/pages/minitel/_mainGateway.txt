@@ -1,0 +1,18 @@
+\x0c\x0E
+
+\e\x5A\eD `p0\n\r
+\e\x5A\eDh?o\e\x59\eB j0zbhp 1x08dh \eG 6)`,4z08dh h`,44h\n\r
+\e\x5A\eD~5`p\e\x59\eB jikjj 55*0g3jp\eG e;*pe*0g3*::*peb;\n\r
+\e\x5A\eD *?          `0 p `0`0`0 p p `0`0`0`0\n\r
+\e\x5A\eDo-p8#d8#d8#d8au*v%m;`u`u*v%z0m;`u`u`u\n\r
+\n\n\r\x0F\eG
+
+
+Welcome to the\eB Minitel\eG gateway Hub!\n\n\r
+
+ 000 - CreatureTel \n\r
+ 100 - Time Machine \n\r
+ 200 - Guest book \n\r
+ 300 - The Museum \n\r
+ 400 - PTT TeleGids \n\r
+ 

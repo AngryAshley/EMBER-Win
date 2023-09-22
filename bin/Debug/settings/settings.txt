@@ -1,0 +1,2 @@
+sys_os=win
+ser_port=4

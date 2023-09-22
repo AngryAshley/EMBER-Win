@@ -1,0 +1,20 @@
+\x0C CreatureNet's DEMO Page!\n\r
+__ Testing colours _____________________\n\r
+\eA RED \eB GREEN \eC YELLOW \eD BLUE\n\r
+\eE MAGENTA \eF CYAN \eG WHITE \n\r
+\eH Flashing text!\eI and\eZ underlined\eY?\n\r\n\r
+
+\eQ RED \eR GREEN \eS YELLOW \eT BLUE \n\r
+\eU MAGENTA \eV CYAN \eW\e@ WHITE \eG\n\r\n\r
+
+\eM Double Height\eL?\n\r
+\eN Double Width\eL?\n\r\n\r
+or maybe just \eODouble Size?\eL\n\r\n\r\n\r
+        \x0B UP\x0a\x0a\x08\x08\x08DOWN\x0B\x08\x08\x08\x08\x08\x08\x08\x08LEFT\x09\x09\x09\x09RIGHT\n\n\n\r
+
+\e\x4D Double Height again\eL?\n\r
+
+r\x12\x50epeat!\n\r
+The bottom bar is blanked using repeats\n\r
+
+\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC [INDEX] to return, [VOLGEND] to cont.

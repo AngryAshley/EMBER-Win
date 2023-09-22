@@ -1,0 +1,21 @@
+\x0C
+\eF___\eG CreatureTel \eF____________________\eE__\eG__\eG\n\r
+\x0E\e\x5F               `8,  (`\n\r
+             `&       "d\n\r
+     \x0FMoshi,\x0E  %          e\n\r
+    \x0Fmoshi!\x0E  *  <lt  xlt "0\n\r
+               }  }~  5\n\r
+            $  ##!  ##! `!\n\r
+            "d    ,,   `$\n\r
+              )`   `p(.,,0\n\r
+                #!       h\n\r
+                   0 `p0 j\n\r
+                *  u jj` 0\n\r
+                 4 +02.*(!\n\r
+                 "# "!\n\r\e\x5E
+\x0F                 YIPPEE!\n\r\eF_\x12\x67\eG\n\r
+ Page 001: DEMO   Page 010: Bug facts\n\r
+
+ Page 900: About  Page 100: The gays\n\r
+
+\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT \eCPlease select \eG*PAGE#\eC:

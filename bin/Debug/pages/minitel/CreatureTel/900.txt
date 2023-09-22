@@ -1,0 +1,25 @@
+\xC \n\r
+\eF___\eG About CreatureTel \eF______________\eE__\eG__\eG\n\r
+CreatureTel is my Personal Playground\n\r
+for all things Videotex.\n\n\r
+
+Here, I try out new things that go\n\r
+beyond the normal intention of Videotex\n\r
+as well as experiments that help our\n\r
+efforts of understanding the original\n\r
+Prestel and Minitel protocols.\n\n\r
+
+It's riddled with memes and jokes by\n\r
+intention, this is the part of our\n\r
+network where we have fun!\n\n\r
+
+Please make a selection below to find\n\r
+out more about...\n\n\r
+
+910 - Me           950 - Secrets\n\r
+920 - Why?\n\r
+930 - The system\n\r
+
+\#this is a test of the comment system, you will never see this line appear in the document!
+it even carries through lines, like \* would in C! How convenient!
+\#
