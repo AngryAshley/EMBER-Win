@@ -278,17 +278,7 @@ int writeScreen(string file){
         return 1;
     }
 }
-///findings
-/*  \x0C= Clear screen \eI = Steady (no flashing)
-    \eL = Reset text size
 
-    MINITEL SPECIFIC
-    \x0F text mode, \x0E Mosaic mode. Switch stays after line break
-
-
-
-    Straight teletext is a no-go. Teletext style Mosaic notation works fine.
-*/
 int main()
 {
     Sleep(1000);
@@ -319,22 +309,29 @@ int main()
     string nextPage;
     string previousPage;
 
-    //writeDemo();
-    serial.write("\x0c(V)iditel or (M)initel?");
+    string accessCode = "-TESTING";
+
+    writeScreen("penroseSystem\\signon.txt");
+    string currentAC = "";
+
     while(true){
         string c= serial.getKey();
-        if(c=="M"||c=="m"){
-            currentProtocol=Minitel;
-            break;
-        }
-        if(c=="V"||c=="v"){
-            currentProtocol=Prestel;
-            break;
-        }
 
+        printf("<%c>",c[0]);
+        if(c[0]==0x13){
+            if(accessCode==currentAC){
+                break;
+            } else {
+                char* str;
+                int strLen =currentAC.length()+40;
+                sprintf(str,"\x08\x12%i \x12%i\x08\x12%i",strLen,strLen,strLen);
+                serial.write(string(str));
+                currentAC="";
+            }
+        }
+        currentAC+=c;
+        serial.write("*");
     }
-
-    if(currentProtocol==Minitel){
 
         while(connected){
 
@@ -381,233 +378,10 @@ int main()
                 }while(true);
 
 
-            } else if(gateway=="CAT"){ //Thom's Cat Corner
-                gateway="CAT";
-                indexPage="000";
-                currentPage="000";
-
-
-                int reply;
-                do{
-                    reply = writeScreen("minitel\\"+gateway+"\\"+currentPage+".txt");
-                    if(reply==1){
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT \eCNo such page! \eG*PAGE#\eC:");
-                        currentPage=lastPage;
-                    } else {
-
-                    if(currentPage!="000"){ //default page footer for when ye're looking at the caets!
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC < [Prev]          ");
-                        serial.write(currentPage);
-                        serial.write("         [Next] >");
-                    }
-                    lastPage=currentPage;
-                    currentPage = modem_getPageNumber();
-                    }
-
-
-                    if(currentPage=="\x13\x43") currentPage=lastPage; //repeat
-                    if(currentPage=="\x13\x42") {//prev
-                        if(lastPage=="000"){
-                            currentPage=lastPage; //can't go lower than this.
-                        } else {
-                            int num = atoi(lastPage.c_str())-1;
-                            char textBuf[4];
-                            sprintf(textBuf,"%03i",num);
-                            currentPage=textBuf;
-                        }
-                    }
-                    if(currentPage=="\x13\x48") {//next
-                            int num = atoi(lastPage.c_str()) +1;
-                            char textBuf[4];
-                            sprintf(textBuf,"%03i",num);
-                            currentPage=textBuf;
-                    }
-
-
-                    if(currentPage=="\x13\x46"){
-                       if(lastPage==indexPage){ //if we're already at the page's index...
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC Return to the Gateway? \eG[Y/N]\eC");
-                        if(serial.getKey()=="Y"){
-                            break;
-                        } else {
-                            currentPage=indexPage;
-                        }
-                       }else{
-                        currentPage=indexPage; //just return to the current index
-                       }
-                    }
-                    if(currentPage=="\x13I"){
-                        connected=false;
-                        break;
-                    }
-                }while(true);
-
-
-            }else if(gateway=="100"){ //"the time machine" - A live viditel experience
-                gateway="TimeMachine";
-                indexPage="000";
-                currentPage="000";
-
-
-                int reply;
-                do{
-                    reply = writeScreen("minitel\\"+gateway+"\\"+currentPage+".txt");
-                    if(reply==1){
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT \eCNo such page! \eG*PAGE#\eC:");
-                        currentPage=lastPage;
-                    } else {
-
-                    if(currentPage!="000"){ //default page footer for when ye're looking at the caets!
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC < [Prev]          ");
-                        serial.write(currentPage);
-                        serial.write("         [Next] >");
-                    }
-                    lastPage=currentPage;
-                    currentPage = modem_getPageNumber();
-                    }
-
-
-                    if(currentPage=="\x13\x43") currentPage=lastPage; //repeat
-                    if(currentPage=="\x13\x42") {//prev
-                        if(lastPage=="000"){
-                            currentPage=lastPage; //can't go lower than this.
-                        } else {
-                            int num = atoi(lastPage.c_str())-1;
-                            char textBuf[4];
-                            sprintf(textBuf,"%03i",num);
-                            currentPage=textBuf;
-                        }
-                    }
-                    if(currentPage=="\x13\x48") {//next
-                            int num = atoi(lastPage.c_str()) +1;
-                            char textBuf[4];
-                            sprintf(textBuf,"%03i",num);
-                            currentPage=textBuf;
-                    }
-
-
-                    if(currentPage=="\x13\x46"){
-                       if(lastPage==indexPage){ //if we're already at the page's index...
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC Return to the Gateway? \eG[Y/N]\eC");
-                        if(serial.getKey()=="Y"){
-                            break;
-                        } else {
-                            currentPage=indexPage;
-                        }
-                       }else{
-                        currentPage=indexPage; //just return to the current index
-                       }
-                    }
-                    if(currentPage=="\x13I"){
-                        connected=false;
-                        break;
-                    }
-                }while(true);
-
-
-
-            } else if(gateway=="TEX"){ //Thom's Cat Corner
-                gateway="TEX";
-                indexPage="000";
-                currentPage="000";
-
-
-                int reply;
-                do{
-                    reply = writeTeletextScreen("minitel\\"+gateway+"\\"+currentPage+".tex");
-                    if(reply==1){
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT \eCNo such page! \eG*PAGE#\eC:");
-                        currentPage=lastPage;
-                    } else {
-
-                    /*if(currentPage!="000"){ //default page footer for when ye're looking at the caets!
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC < [Prev]          ");
-                        serial.write(currentPage);
-                        serial.write("         [Next] >");
-                    }*/
-                    lastPage=currentPage;
-                    currentPage = modem_getPageNumber();
-                    }
-
-
-                    if(currentPage=="\x13\x43") currentPage=lastPage; //repeat
-                    if(currentPage=="\x13\x42") {//prev
-                        if(lastPage=="000"){
-                            currentPage=lastPage; //can't go lower than this.
-                        } else {
-                            int num = atoi(lastPage.c_str())-1;
-                            char textBuf[4];
-                            sprintf(textBuf,"%03i",num);
-                            currentPage=textBuf;
-                        }
-                    }
-                    if(currentPage=="\x13\x48") {//next
-                            int num = atoi(lastPage.c_str()) +1;
-                            char textBuf[4];
-                            sprintf(textBuf,"%03i",num);
-                            currentPage=textBuf;
-                    }
-
-
-                    if(currentPage=="\x13\x46"){
-                       if(lastPage==indexPage){ //if we're already at the page's index...
-                        serial.write("\x0F\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT\eC Return to the Gateway? \eG[Y/N]\eC");
-                        if(serial.getKey()=="Y"){
-                            break;
-                        } else {
-                            currentPage=indexPage;
-                        }
-                       }else{
-                        currentPage=indexPage; //just return to the current index
-                       }
-                    }
-                    if(currentPage=="\x13I"){
-                        connected=false;
-                        break;
-                    }
-                }while(true);
-
-
             } else if(gateway=="\x13I"){ //disconnect
                 connected=false;
             }
         }
-
-
-
-///----------------------------------------------------------------------------------------------------------------------------------------------
-    } else { /// Prestel version
-
-        serial.write("\x0C\n\e\x4D Please select *gateway#:");
-            string gateway;
-
-            if(modem_getPageNumber()=="000"){
-                string gateway = "0";
-                string currentPage = "000";
-                string lastPage;
-                int reply;
-                do{
-                    reply = writeScreen("prestel\\"+currentPage+".txt");
-                    if(reply==1){
-                        serial.write("\x1F\x58\x41\eT \x12\x67\x1f\x58\x41\eT \eCNo such page! \eG*PAGE#\eC:");
-                        currentPage=lastPage;
-                    }
-                    lastPage=currentPage;
-                    currentPage = modem_getPageNumber();
-
-                    if(currentPage=="\x13\x43") currentPage=lastPage;
-                    //if(currentPage=="\x13\x46")
-                }while(currentPage!="\x13I");
-        } else {
-            serial.print("\nNothing here... Get lost!");
-        }
-
-
-
-    }
-
-
-
 
     modemHangUp();
 
