@@ -12,7 +12,7 @@ These constructs will all have positive and negative emotion modifier weights to
 They will also all have memories, with associated feelings stored along with them.
 To make everything complete, an RNG provides a certain level of variability which is only common in humans;
 memories corrupt, moods swing, messages are misinterpreted, everything.
-It's all an interesting experiment to men and I am extremely curious how it will turn out, how we will see all the systems manifest in the conversations with Avery and their friends.
+It's all an interesting experiment to me and I am extremely curious how it will turn out, how we will see all the systems manifest in the conversations with Avery and their friends.
 
 I'm currently writing up a research report, which will be linked to here when it is in a readable state.
 
